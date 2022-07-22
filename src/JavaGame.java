@@ -2,6 +2,35 @@ import java.awt.*;
 import java.util.Random;
 import java.util.Scanner;
 
+//Description:
+
+// You play the Game in the Console!
+// You have to exit the Room for this you have to get to the Door.
+// Before you can go through the door you have to get the key first.
+// But there also is a Snake who is following you, if the Snake gets you, you lost and the Game is over!
+
+
+// Controls:
+
+// "w" input = Player Moves Up
+// "a" input = Player Moves Left
+// "s" input = Player Moves Down
+// "d" input = Player Moves Right
+
+
+// Map letter meanings:
+
+// "P" = the Player
+// "K" = the Key
+// "S" = the Snake
+// "D" = the Door
+
+// Good luck and have fun!
+
+
+
+
+
 public class JavaGame {
 
     public static void main(String[] args) {
@@ -10,19 +39,19 @@ public class JavaGame {
 
         int rndmXP = random.nextInt(40);
         int rndmXS = random.nextInt(40);
-        int rndmXG = random.nextInt(40);
+        int rndmXK = random.nextInt(40);
         int rndmXD = random.nextInt(40);
         int rndmYP = random.nextInt(10);
         int rndmYS = random.nextInt(10);
-        int rndmYG = random.nextInt(10);
+        int rndmYK = random.nextInt(10);
         int rndmYD = random.nextInt(10);
 
         Point playerPos = new Point(rndmXP, rndmYP);
         Point snakePos = new Point(rndmXS, rndmYS);
-        Point goldPos = new Point(rndmXG, rndmYG);
+        Point keyPos = new Point(rndmXK, rndmYK);
         Point doorPos = new Point(rndmXD, rndmYD);
         boolean game = true;
-        boolean collectGold = false;
+        boolean collectKey = false;
 
         while (game) {
             for (int y = 0; y < 10; y++) {
@@ -32,8 +61,8 @@ public class JavaGame {
                         System.out.print("P");
                     else if (p.equals(snakePos))
                         System.out.print("S");
-                    else if (p.equals(goldPos))
-                        System.out.print("G");
+                    else if (p.equals(keyPos))
+                        System.out.print("K");
                     else if (p.equals(doorPos))
                         System.out.print("D");
                     else System.out.print(".");
@@ -46,12 +75,12 @@ public class JavaGame {
                 System.out.println("U got eaten by the snake L");
             }
 
-            if (playerPos.equals(goldPos)) {
-                collectGold = true;
-                goldPos = new Point(-1, -1);
+            if (playerPos.equals(keyPos)) {
+                collectKey = true;
+                keyPos = new Point(-1, -1);
             }
 
-            if (playerPos.equals(doorPos) && collectGold) {
+            if (playerPos.equals(doorPos) && collectKey) {
                 game = false;
                 System.out.println("U actually won!");
             }
